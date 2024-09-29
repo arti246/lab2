@@ -1,6 +1,7 @@
 #pragma once
 int add_patient(struct patient);
-
+int delete_patient(std::string);
+int find_patient(std::string);
 
 /*Пациент*/
 typedef struct patient {
