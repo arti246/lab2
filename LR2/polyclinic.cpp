@@ -11,14 +11,14 @@ int add_patient(struct patient patient_add)
 	ofstream outfile("db.txt", ios::app);
 	if (!outfile.is_open())
 	{
-		printf("Ошибка открытия файла!\n");
+		cout << "Ошибка открытия файла!" << endl;
 		return 1;
 	}
 	outfile << patient_add.name << " " << patient_add.surname << " " << patient_add.patronymic << " "
 		<<  patient_add.year_birth << " " << patient_add.gender << " " << patient_add.address << " " 
 		<< patient_add.phone << " " << patient_add.insurance << endl;
 	outfile.close();
-	printf("Пациент добавлен!\n");
+	cout << "Пациент добавлен!" << endl;
 }
 
 int find_patient(string surname_find)
@@ -28,7 +28,7 @@ int find_patient(string surname_find)
 	string name, surname;
 	if (!infile.is_open())
 	{
-		printf("Ошибка открытия файла!\n");
+		cout << "Ошибка открытия файла!" << endl;
 		return 2;
 	}
 	while (getline(infile, name, ',') && getline(infile, surname))
@@ -53,7 +53,7 @@ int delete_patient(string surname_find)
 
 	if (!infile.is_open() && !outfile.is_open())
 	{
-		printf("Ошибка открытия файла!\n");
+		cout << "Ошибка открытия файла!" << endl;
 		return 1;
 	}
 
@@ -68,10 +68,29 @@ int delete_patient(string surname_find)
 
 	if (found)
 	{
-		if (remove("db.txt") != 0) printf("Ошибка удаления пациента!\n");
-		else if (rename("db1.txt", "db.txt") != 0) printf("Ошибка удаления пациента!\n");
-		else printf("Запись пациента успешно удалена!\n");
+		if (remove("db.txt") != 0) cout << "Ошибка удаления пациента!" << endl;
+		else if (rename("db1.txt", "db.txt") != 0) cout << "Ошибка удаления пациента!" << endl;
+		else cout << "Запись пациента успешно удалена!" << endl;
 	}
 	return 0;
 }
 
+int print_patient_all()
+{
+	setlocale(LC_ALL, "RUS");
+	ifstream infile("db.txt", ios::in);
+	if (!infile.is_open())
+	{
+		cout << "Ошибка открытия файла!" << endl;
+		return 1;
+	}
+
+	string line;
+
+	while (getline(infile, line))
+	{
+		cout << line << endl;
+	}
+
+	infile.close();
+}

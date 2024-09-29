@@ -6,5 +6,6 @@ int main()
 {
     patient p1{"Artur", "Grishin", "Artemovich", 2002, 0, "Barnaul sity...", "88005553535", "1111"};
     //add_patient(p1);
-    delete_patient("Grishin");
+    //delete_patient("Grishin");
+    print_patient_all();
 }
