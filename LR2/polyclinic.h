@@ -1,4 +1,7 @@
 #pragma once
+int add_patient(struct patient);
+
+
 /*Пациент*/
 typedef struct patient {
     char name[50];
