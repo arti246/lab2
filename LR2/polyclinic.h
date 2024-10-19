@@ -4,9 +4,13 @@ int delete_patient(std::string);
 int find_patient(std::string);
 int print_patient_all();
 
-
 /*Пациент*/
-typedef struct patient {
+class Patient 
+{
+public:
+    int AddPatient(class Patient);
+    
+private:
     char name[50];
     char surname[50];
     char patronymic[50];
@@ -15,10 +19,13 @@ typedef struct patient {
     char address[100];
     char phone[20];
     char insurance[20]; // Номер страхового полиса
+
 };
 
 /*Доктор*/
-typedef struct doctor {
+class Doctor
+{
+private:
     char name[50];
     char surname[50];
     char patronymic[50];
@@ -27,7 +34,9 @@ typedef struct doctor {
 };
 
 /*Запись на приём*/
-typedef struct appointment {
+class Appointment
+{
+private:
     int id_patient;
     int id_doctor;
     char date[11];
@@ -36,19 +45,25 @@ typedef struct appointment {
 };
 
 /*Симптомы*/
-typedef struct symptoms {
+class Symptoms
+{
+private:
     char description[255];
     char date_start[11];
 };
 
 /*Диагноз*/
-typedef struct diagnosis {
+class Diagnosis
+{
+private:
     char name_disease[10]; // Название болезни
     char description[255];
 };
 
 /*Лечение*/
-typedef struct treatment {
+class Treatment 
+{
+private:
     char medicine[50]; // лекарство
     int dosage; // дозировка
     char frequency[20]; // частота приёма
@@ -56,15 +71,19 @@ typedef struct treatment {
 };
 
 /*Рецепт врача*/
-typedef struct prescription {
+class Prescription
+{
+private:
     int id_patient;
     int id_doctor;
     char date_issue[11]; // дата выдачи
-    struct treatment medicine_prescription;
+    class Treatment medicine_prescription;
 };
 
 /*Свободное время врача*/
-typedef struct free_time {
+class FreeTime
+{
+private:
     int id_doctor;
     char date[11];
     char time_start[6];
