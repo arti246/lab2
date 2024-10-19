@@ -4,8 +4,13 @@
 
 int main()
 {
-    patient p1{"Ivanov", "Ivan", "Ivanovich", 2002, 0, "Barnaul_sity_Lenina46", "88005553535", "1111"}; // Создание записи "пациент"
+    Patient patient1("Ivan", "Ivaniv", "Ivanovich", 1990, 0, "Lenina_st.,h.1", "8-800-555-35-35", "1234567890");
+    patient1.printPatientInfo();
+    patient1.setPatient();
+    patient1.printPatientInfo();
+    // Создание записи "пациент"
+    
     //add_patient(p1); // Добавление новой записи "пациент" в БД
     //delete_patient("Ivanov"); // Удаление записи "пациент" по фамилии из БД
-    print_patient_all(); // Вывод в консоль все записи из БД "пациент"
+    //print_patient_all(); // Вывод в консоль все записи из БД "пациент"
 }

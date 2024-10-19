@@ -1,14 +1,17 @@
 #pragma once
-int add_patient(struct patient);
-int delete_patient(std::string);
-int find_patient(std::string);
-int print_patient_all();
 
 /*Пациент*/
 class Patient 
 {
 public:
-    int AddPatient(class Patient);
+    int addPatientFile(class Patient);
+    int deletePatientFile(std::string);
+    int findPatientFile(std::string);
+    int printPatientAllFile();
+    Patient();
+    Patient(const char*, const char*, const char*, int, int, const char*, const char*, const char*); 
+    void printPatientInfo();
+    int setPatient();
     
 private:
     char name[50];
@@ -19,7 +22,6 @@ private:
     char address[100];
     char phone[20];
     char insurance[20]; // Номер страхового полиса
-
 };
 
 /*Доктор*/
