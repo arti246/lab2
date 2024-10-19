@@ -1,4 +1,5 @@
 #pragma once
+using namespace std;
 
 /*Пациент*/
 class Patient 
@@ -38,6 +39,18 @@ private:
 /*Запись на приём*/
 class Appointment
 {
+public:
+    Appointment(Patient* patient, int, const char* date, const char* time, const char* status): id_doctor(id_doctor), patient(patient) {
+        strcpy(this->date, date);
+        strcpy(this->time, time);
+        strcpy(this->status, status);
+    }
+
+    void printAppointmentInfo() {
+        cout << "Дата: " << date << "\nВремя: " << time << "\nВрач: " << id_doctor;
+        cout << "\nПациент: " << patient->name << " " << patient->surname << endl << status;
+    }
+
 private:
     Patient* patient;
     int id_doctor;

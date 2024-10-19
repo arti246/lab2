@@ -1,6 +1,2 @@
 ﻿  LR2.cpp
-  patient.cpp
-  Создание кода...
-C:\Users\Артур\source\repos\LR2\LR2\patient.cpp(25): warning C4715: Patient::addPatientFile: значение возвращается не при всех путях выполнения
-C:\Users\Артур\source\repos\LR2\LR2\patient.cpp(77): warning C4715: Patient::printPatientAllFile: значение возвращается не при всех путях выполнения
   LR2.vcxproj -> C:\Users\Артур\source\repos\LR2\x64\Debug\LR2.exe

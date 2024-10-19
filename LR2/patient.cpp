@@ -99,7 +99,7 @@ Patient::Patient(const char* name, const char* surname, const char* patronymic, 
 void Patient::printPatientInfo()
 {
 	setlocale(LC_ALL, "ru");
-	cout << "\nИнформации о пациенте:\nИмя: " << name << endl << "Фамилия: " << surname << endl;
+	cout << "Информации о пациенте:\nИмя: " << name << endl << "Фамилия: " << surname << endl;
 	cout << "Отчество: " << patronymic << endl << "Год рождения: " << year_birth << endl;
 	cout << "Пол: " << (gender == 0 ? "Мужской" : "Женский") << endl << "Адрес: " << address << endl;
 	cout << "Телефон: " << phone << endl << "Страховой полис: " << insurance << endl << endl;
@@ -137,3 +137,45 @@ int Patient::setPatient()
 	cin.getline(insurance, 20);
 	return 0;
 }
+
+Doctor::Doctor() {
+	strcpy(name, "");
+	strcpy(surname, "");
+	strcpy(patronymic, "");
+	strcpy(specialization, "");
+	strcpy(office_number, "");
+}
+
+void Doctor::printDoctorInfo()
+{
+	setlocale(LC_ALL, "ru");
+	cout << "Информации о докторе:\nИмя: " << name << endl << "Фамилия: " << surname << endl;
+	cout << "Отчество: " << patronymic << endl << "Специализация: " << specialization << endl;
+	cout << "Номер кабинета: " << office_number << endl;
+}
+
+int Doctor::setDoctor()
+{
+	setlocale(LC_ALL, "ru");
+	cout << "Ввод информации о докторе:\n" << "Введите имя: ";
+	cin.getline(name, 50);
+	cout << "Введите фамилию: ";
+	cin.getline(surname, 50);
+	cout << "Введите отчество: ";
+	cin.getline(patronymic, 50);
+	cout << "Специализация: ";
+	cin.getline(specialization, 50);
+	cout << "Номер кабинета: ";
+	cin.getline(office_number, 50);
+	return 0;
+}
+
+Doctor::Doctor(const char* name, const char* surname, const char* patronymic, const char* specialization, const char* office_number)
+{
+	strcpy(this->name, name);
+	strcpy(this->surname, surname);
+	strcpy(this->patronymic, patronymic);
+	strcpy(this->specialization, specialization);
+	strcpy(this->office_number, office_number);
+}
+

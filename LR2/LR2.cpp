@@ -13,10 +13,6 @@ int main()
     //patient1.addPatientFile();
     //patient1.deletePatientFile("1234567890");
     //patient1.printPatientAllFile();
-    
-    //add_patient(p1); // Добавление новой записи "пациент" в БД
-    //delete_patient("Ivanov"); // Удаление записи "пациент" по фамилии из БД
-    //print_patient_all(); // Вывод в консоль все записи из БД "пациент"
 
     int n;
     cout << "\nВведите количество пациентов: ";
@@ -60,6 +56,9 @@ int main()
         delete patients2[i];
     }
     delete[] patients2;
-
-
+    
+    //Принцип ассоциации
+    Appointment appointment1(&patient1, 1, "25.12.2024", "10:00", "Записан");
+    cout << "Запись пациента " << patient1.name << " " << patient1.surname << ":" << endl;
+    appointment1.printAppointmentInfo();
 }

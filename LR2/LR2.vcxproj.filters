@@ -13,18 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\src">
+      <UniqueIdentifier>{2d898ab9-edde-43e9-bbdf-063162e2bfae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LR2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="patient.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="patient.h">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
