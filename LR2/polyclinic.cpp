@@ -5,9 +5,10 @@
 #include <fstream>
 #include <iostream>
 #include "polyclinic.h"
+
 using namespace std;
 
-int Patient::addPatientFile(class Patient patientAdd)
+int Patient::addPatientFile()
 {
 	setlocale(LC_ALL, "RUS");
 	ofstream outfile("db.txt", ios::app);
@@ -16,36 +17,14 @@ int Patient::addPatientFile(class Patient patientAdd)
 		cout << "Ошибка открытия файла!" << endl;
 		return 1;
 	}
-	outfile << patientAdd.name << " " << patientAdd.surname << " " << patientAdd.patronymic << " "
-		<< patientAdd.year_birth << " " << patientAdd.gender << " " << patientAdd.address << " "
-		<< patientAdd.phone << " " << patientAdd.insurance << endl;
+	outfile << this->name << " " << this->surname << " " << this->patronymic << " "
+		<< this->year_birth << " " << this->gender << " " << this->address << " "
+		<< this->phone << " " << this->insurance << endl;
 	outfile.close();
 	cout << "Пациент добавлен!" << endl;
 }
 
-int Patient::findPatientFile(string surnameFind)
-{
-	setlocale(LC_ALL, "RUS");
-	ifstream infile("db.txt", ios::in);
-	string name, surname;
-	if (!infile.is_open())
-	{
-		cout << "Ошибка открытия файла!" << endl;
-		return 2;
-	}
-	while (getline(infile, name, ',') && getline(infile, surname))
-	{
-		if (surname == surnameFind)
-		{
-			return 1;
-			break;
-		}
-	}
-	return 0;
-	infile.close();
-}
-
-int Patient::deletePatientFile(string surnameFind)
+int Patient::deletePatientFile(string insuranceFind)
 {
 	setlocale(LC_ALL, "RUS");
 	ifstream infile("db.txt", ios::in);
@@ -62,7 +41,7 @@ int Patient::deletePatientFile(string surnameFind)
 	while (getline(infile, name, ' ') && getline(infile, surname, ' ') && getline(infile, patronymic, ' ') && getline(infile, year_birth, ' ')
 		&& getline(infile, gender, ' ') && getline(infile, address, ' ') && getline(infile, phone, ' ') && getline(infile, insurance))
 	{
-		if (surnameFind == surname) found = true;
+		if (insuranceFind == insurance) found = true;
 		else outfile << name << " " << surname << " " << patronymic << " " << year_birth << " " << gender << " " << address
 			<< " " << phone << " " << insurance << endl;
 	}
@@ -88,7 +67,7 @@ int Patient::printPatientAllFile()
 	}
 
 	string line;
-
+	cout << "\nСписок пациентов:\n";
 	while (getline(infile, line))
 	{
 		cout << line << endl;

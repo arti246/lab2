@@ -4,9 +4,8 @@
 class Patient 
 {
 public:
-    int addPatientFile(class Patient);
+    int addPatientFile();
     int deletePatientFile(std::string);
-    int findPatientFile(std::string);
     int printPatientAllFile();
     Patient();
     Patient(const char*, const char*, const char*, int, int, const char*, const char*, const char*); 
