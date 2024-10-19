@@ -1,6 +1,6 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include "polyclinic.h"
+#include "patient.h"
 
 using namespace std;
 

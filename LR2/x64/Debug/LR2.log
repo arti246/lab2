@@ -1,10 +1,6 @@
 ﻿  LR2.cpp
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(18,2): warning C4091: typedef : пропускается слева от "patient", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(27,2): warning C4091: typedef : пропускается слева от "doctor", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(36,2): warning C4091: typedef : пропускается слева от "appointment", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(42,2): warning C4091: typedef : пропускается слева от "symptoms", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(48,2): warning C4091: typedef : пропускается слева от "diagnosis", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(56,2): warning C4091: typedef : пропускается слева от "treatment", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(64,2): warning C4091: typedef : пропускается слева от "prescription", когда ни одна переменная не объявлена
-C:\Users\Артур\source\repos\LR2\LR2\polyclinic.h(72,2): warning C4091: typedef : пропускается слева от "free_time", когда ни одна переменная не объявлена
+  patient.cpp
+  Создание кода...
+C:\Users\Артур\source\repos\LR2\LR2\patient.cpp(25): warning C4715: Patient::addPatientFile: значение возвращается не при всех путях выполнения
+C:\Users\Артур\source\repos\LR2\LR2\patient.cpp(77): warning C4715: Patient::printPatientAllFile: значение возвращается не при всех путях выполнения
   LR2.vcxproj -> C:\Users\Артур\source\repos\LR2\x64\Debug\LR2.exe

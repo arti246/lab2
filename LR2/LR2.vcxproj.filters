@@ -18,12 +18,12 @@
     <ClCompile Include="LR2.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="polyclinic.cpp">
+    <ClCompile Include="patient.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="polyclinic.h">
+    <ClInclude Include="patient.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
