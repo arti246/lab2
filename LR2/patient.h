@@ -53,6 +53,7 @@ public:
 
 private:
     Patient* patient;
+    Doctor* doctor;
     int id_doctor;
     char date[11];
     char time[6];
@@ -71,14 +72,19 @@ private:
 class Diagnosis
 {
 private:
+    Patient* patient;
+    Doctor* doctor;
     char name_disease[10]; // Название болезни
     char description[255];
+    Symptoms* symptoms;
 };
 
 /*Лечение*/
 class Treatment 
 {
 private:
+    Patient* patient;
+    Doctor* doctor;
     char medicine[50]; // лекарство
     int dosage; // дозировка
     char frequency[20]; // частота приёма
@@ -89,17 +95,17 @@ private:
 class Prescription
 {
 private:
-    int id_patient;
-    int id_doctor;
+    Patient* patient;
+    Doctor* doctor;
     char date_issue[11]; // дата выдачи
-    class Treatment medicine_prescription;
+    Treatment* medicine_prescription;
 };
 
 /*Свободное время врача*/
 class FreeTime
 {
 private:
-    int id_doctor;
+    Doctor* doctor;
     char date[11];
     char time_start[6];
     char time_end[6];
