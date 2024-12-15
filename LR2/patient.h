@@ -5,24 +5,36 @@ using namespace std;
 class Patient 
 {
 public:
-    int addPatientFile();
-    int deletePatientFile(std::string);
-    int printPatientAllFile();
     Patient();
-    Patient(const char*, const char*, const char*, int, int, const char*, const char*, const char*); 
-    void printPatientInfo();
-    int setPatient();
+    Patient(const std::string& name, const std::string& surname, const std::string& patronymic, int year_birth,
+        int gender, const std::string& address, const std::string& phone, const std::string& insurance);
+    Patient(const Patient& other);
+    Patient& operator=(const Patient& other);
+    ~Patient() = default;
 
-    char name[50];
-    char surname[50];
-    
+    int addPatientFile();
+    int deletePatientFile(const std::string& insuranceFind);
+    void printPatientAllFile();
+    void printPatientInfo() const;
+    int setPatient();
+    int* getYearBirthPtr();
+    int& getYearBirthRef();
+    bool operator==(const Patient& other) const;
+    friend std::ostream& operator<<(std::ostream& os, const Patient& patient);
+
+    static int getPatientCount(); // Статический метод
+    static void resetPatientCount();
+
 private:
-    char patronymic[50];
+    std::string name;
+    std::string surname;
+    std::string patronymic;
     int year_birth;
-    int gender; // '0' - мужской, '1' - женский
-    char address[100];
-    char phone[20];
-    char insurance[20]; // Номер страхового полиса
+    int gender;
+    std::string address;
+    std::string phone;
+    std::string insurance;
+    static int patientCount; // Статическое поле
 };
 
 /*Доктор*/
@@ -44,11 +56,6 @@ public:
         strcpy(this->date, date);
         strcpy(this->time, time);
         strcpy(this->status, status);
-    }
-
-    void printAppointmentInfo() {
-        cout << "Дата: " << date << "\nВремя: " << time << "\nВрач: " << id_doctor;
-        cout << "\nПациент: " << patient->name << " " << patient->surname << endl << status;
     }
 
 private:

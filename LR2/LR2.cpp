@@ -6,59 +6,35 @@ using namespace std;
 
 int main()
 {
-    Patient patient1("Ivan", "Ivaniv", "Ivanovich", 1990, 0, "Lenina_st.,h.1", "8-800-555-35-35", "1234567890");
-    patient1.printPatientInfo();
-    //patient1.setPatient();
-    //patient1.printPatientInfo();
-    //patient1.addPatientFile();
-    //patient1.deletePatientFile("1234567890");
-    //patient1.printPatientAllFile();
+    setlocale(LC_ALL, "ru");
+    Patient p1("Ivan", "Ivanov", "Ivanovich", 1985, 0, "Moskva", "+79161234567", "1234567890");
+    Patient p2;
+    p2.setPatient();
 
-    int n;
-    cout << "\nВведите количество пациентов: ";
-    cin >> n;
-    cin.ignore();
-
-    // Работа с динамическим массивом объектов класса
-    Patient* patients = new Patient[n];
-
-    // Ввод информации о пациентах
-    for (int i = 0; i < n; ++i) {
-        cout << "Введите информацию о пациенте #" << i + 1 << endl;
-        patients[i].setPatient();
+    if (p1 == p2) {
+        cout << "Пациенты одинаковы" << endl;
+    }
+    else {
+        cout << "Пациенты разные" << endl;
     }
 
-    // Вывод информации о пациентах
-    cout << "\nИнформация о пациентах:" << endl;
-    for (int i = 0; i < n; ++i) {
-        patients[i].printPatientInfo();
-    }
-    delete[] patients;
+    int* year = p1.getYearBirthPtr();
+    cout << "Год рождения через указатель: " << *year << endl;
+    int& yearRef = p1.getYearBirthRef();
+    yearRef = 1986;
+    cout << "Год рождения через ссылку: " << p1.getYearBirthRef() << endl;
 
-    // Работа с массивом динамических объектов класса
-    Patient** patients2 = new Patient * [n];
-
-    // Создание объектов класса и инициализация массива указателей
-    for (int i = 0; i < n; ++i) {
-        patients2[i] = new Patient();
-        cout << "Введите информацию о пациенте #" << i + 1 << endl;
-        patients2[i]->setPatient();
-    }
-
-    // Вывод информации о пациентах
-    cout << "\nИнформация о пациентах:" << endl;
-    for (int i = 0; i < n; ++i) {
-        patients2[i]->printPatientInfo();
-    }
-
-    // Освобождение памяти
-    for (int i = 0; i < n; ++i) {
-        delete patients2[i];
-    }
-    delete[] patients2;
+    cout << p1 << endl; //Используем перегрузку оператора <<
     
-    //Принцип ассоциации
-    Appointment appointment1(&patient1, 1, "25.12.2024", "10:00", "Записан");
-    cout << "Запись пациента " << patient1.name << " " << patient1.surname << ":" << endl;
-    appointment1.printAppointmentInfo();
+    cout << "Количество пациентов: " << Patient::getPatientCount() << endl;
+
+    p1.addPatientFile();
+    p2.addPatientFile();
+
+    p1.printPatientAllFile();
+
+    Patient::resetPatientCount(); // Сброс счетчика
+    cout << "Количество пациентов после сброса: " << Patient::getPatientCount() << endl;
+
+    return 0;
 }
