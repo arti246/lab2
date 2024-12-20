@@ -1,40 +1,24 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "patient.h"
+#include "HospitalizedPatient.h"
+#include "Outpatient.h"
 
 using namespace std;
 
 int main()
 {
     setlocale(LC_ALL, "ru");
-    Patient p1("Ivan", "Ivanov", "Ivanovich", 1985, 0, "Moskva", "+79161234567", "1234567890");
-    Patient p2;
-    p2.setPatient();
+    // (Пример использования HospitalizedPatient и Outpatient)
+    HospitalizedPatient hp("", "Иванов", "Иванович", 1985, 1, "ул. Ленина, 1", "+79001234567", "1234567890", "101", 5);
+    hp.addPatientFile();
+    hp.printPatientInfo();
 
-    if (p1 == p2) {
-        cout << "Пациенты одинаковы" << endl;
-    }
-    else {
-        cout << "Пациенты разные" << endl;
-    }
+    Outpatient op("Петр", "Петров", "Петрович", 1990, 1, "ул. Мира, 2", "+79009876543", "9876543210", "2024-03-15");
+    op.addPatientFile();
+    op.printPatientInfo();
 
-    int* year = p1.getYearBirthPtr();
-    cout << "Год рождения через указатель: " << *year << endl;
-    int& yearRef = p1.getYearBirthRef();
-    yearRef = 1986;
-    cout << "Год рождения через ссылку: " << p1.getYearBirthRef() << endl;
-
-    cout << p1 << endl; //Используем перегрузку оператора <<
-    
-    cout << "Количество пациентов: " << Patient::getPatientCount() << endl;
-
-    p1.addPatientFile();
-    p2.addPatientFile();
-
-    p1.printPatientAllFile();
-
-    Patient::resetPatientCount(); // Сброс счетчика
-    cout << "Количество пациентов после сброса: " << Patient::getPatientCount() << endl;
+    return 0;
 
     return 0;
 }

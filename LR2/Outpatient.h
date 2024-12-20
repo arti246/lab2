@@ -5,22 +5,33 @@ using namespace std;
 
 class Outpatient : public Patient {
 public:
-    Outpatient(const std::string& name, const std::string& surname, const std::string& patronymic, int year_birth,
-        int gender, const std::string& address, const std::string& phone, const std::string& insurance,
-        const std::string& nextAppointment)
+    Outpatient(const string& name, const string& surname, const string& patronymic, int year_birth,
+        int gender, const string& address, const string& phone, const string& insurance,
+        const string& nextAppointment)
         : Patient(name, surname, patronymic, year_birth, gender, address, phone, insurance), nextAppointment(nextAppointment) {}
 
     void printPatientInfo() const override { // Перегрузка без вызова базового метода
-        std::cout << "Имя: " << this->getName() << ", Фамилия: " << this->getSurname()
+        cout << "Имя: " << this->getName() << ", Фамилия: " << this->getSurname()
             << ", Отчество: " << this->getPatronymic() << ", Год рождения: " << this->getYearBirth()
             << ", Пол: " << (this->getGender() == 1 ? "Мужской" : "Женский")
             << ", Адрес: " << this->getAddress() << ", Телефон: " << this->getPhone()
             << ", Страховой полис: " << this->getInsurance() << ", Следующий прием: " << 
-            nextAppointment << std::endl;
+            nextAppointment << endl;
 
-        std::cout << "ID Пациента: " << this->patientID << std::endl; // Доступ к защищенному полю
+        cout << "ID Пациента: " << this->patientID << endl; // Доступ к защищенному полю
+    }
+
+    int addPatientFile() const override { // Перегрузка без вызова базового класса
+        ofstream outfile("db.txt", ios::app);
+        if (!outfile.is_open()) {
+            throw runtime_error("Ошибка открытия файла!");
+        }
+        outfile << *this << endl;
+        outfile.close();
+        cout << "Амбулаторный пациент добавлен!" << endl;
+        return 0;
     }
 
 private:
-    std::string nextAppointment;
+    string nextAppointment;
 };

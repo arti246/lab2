@@ -31,8 +31,29 @@ public:
     bool operator==(const Patient& other) const;
     friend ostream& operator<<(ostream& os, const Patient& patient);
 
-    static int getPatientCount();
     static void resetPatientCount();
+
+    //Геттеры
+    string getName() const { return name; }
+    string getSurname() const { return surname; }
+    string getPatronymic() const { return patronymic; }
+    int getYearBirth() const { return year_birth; }
+    int getGender() const { return gender; }
+    string getAddress() const { return address; }
+    string getPhone() const { return phone; }
+    string getInsurance() const { return insurance; }
+    int getPatientCount() { return patientCount; }
+
+    //Сеттеры
+    void setName(string name) { this->name = name; }
+    void setSurname(string surname) { this->surname = surname; }
+    void setPatronymic(string patronymic) { this->patronymic = patronymic; }
+    void setYearBirth(int year_birth) { this->year_birth = year_birth; }
+    void setGender(int gender) { this->gender = gender; }
+    void setAddress(string address) { this->address = address; }
+    void setPhone(string phone) { this->phone = phone; }
+    void getInsurance(int patientCouninsurancet) { this->insurance = insurance; }
+    void getPatientCount(int patientCount) { this->patientCount = patientCount; }
 
     // Защищенный доступ к ID пациента
 protected:
