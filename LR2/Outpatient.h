@@ -10,7 +10,7 @@ public:
         const string& nextAppointment)
         : Patient(name, surname, patronymic, year_birth, gender, address, phone, insurance), nextAppointment(nextAppointment) {}
 
-    void printPatientInfo() const override { // Перегрузка без вызова базового метода
+    void printPatientInfo() const override { // Переопределение метода без вызова базового метода
         cout << "Имя: " << this->getName() << ", Фамилия: " << this->getSurname()
             << ", Отчество: " << this->getPatronymic() << ", Год рождения: " << this->getYearBirth()
             << ", Пол: " << (this->getGender() == 1 ? "Мужской" : "Женский")
@@ -21,7 +21,7 @@ public:
         cout << "ID Пациента: " << this->patientID << endl; // Доступ к защищенному полю
     }
 
-    int addPatientFile() const override { // Перегрузка без вызова базового класса
+    int addPatientFile() const override { // Переопределение без вызова базового класса
         ofstream outfile("db.txt", ios::app);
         if (!outfile.is_open()) {
             throw runtime_error("Ошибка открытия файла!");
@@ -30,6 +30,11 @@ public:
         outfile.close();
         cout << "Амбулаторный пациент добавлен!" << endl;
         return 0;
+    }
+
+    void printPatientSummary() const {
+        Patient::printPatientSummary();
+        std::cout << "Статус: Амбулаторный, Следующий прием: " << nextAppointment << std::endl;
     }
 
 private:

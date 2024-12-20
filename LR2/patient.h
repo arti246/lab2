@@ -21,6 +21,12 @@ public:
 
     ~Patient() = default;
 
+    virtual void printPatientSummary() const { // Виртуальная функция
+        cout << "Имя: " << name << ", Фамилия: " << surname << ", Страховой полис: " << insurance << endl;
+    }
+
+    virtual ~Patient() = default; // Виртуальный деструктор - очень важно!
+
     virtual int addPatientFile() const;
     int deletePatientFile(const string& insuranceFind) const;
     void printPatientAllFile() const;

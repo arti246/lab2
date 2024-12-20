@@ -15,12 +15,12 @@ public:
         const string& ward, int daysInHospital)
         : Patient(name, surname, patronymic, year_birth, gender, address, phone, insurance), ward(ward), daysInHospital(daysInHospital) {}
 
-    void printPatientInfo() const override {  // Перегрузка с вызовом базового класса
+    void printPatientInfo() const override {  // Переопределение с вызовом базового класса
         Patient::printPatientInfo();
         cout << "Палата: " << ward << ", Дней в больнице: " << daysInHospital << endl;
     }
 
-    int addPatientFile() const override { // Перегрузка без вызова базового класса
+    int addPatientFile() const override { // Переопределение без вызова базового класса
         ofstream outfile("db.txt", ios::app);
         if (!outfile.is_open()) {
             throw runtime_error("Ошибка открытия файла!");
@@ -31,7 +31,12 @@ public:
         return 0;
     }
 
+    void printPatientSummary() const {
+        Patient::printPatientSummary();
+        cout << "Статус: Госпитализированный, Палата: " << ward << endl;
+    }
+
 private:
-    string ward;
+    string ward; // палата
     int daysInHospital;
 };

@@ -9,16 +9,29 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "ru");
-    // (Пример использования HospitalizedPatient и Outpatient)
-    HospitalizedPatient hp("", "Иванов", "Иванович", 1985, 1, "ул. Ленина, 1", "+79001234567", "1234567890", "101", 5);
-    hp.addPatientFile();
-    hp.printPatientInfo();
+    Patient* p1 = new Patient("Иван", "Иванов", "Иванович", 1980, 1, "ул. Пушкина, 1", "+71234567890", "111111");
+    HospitalizedPatient* p2 = new HospitalizedPatient("Петр", "Петров", "Петрович", 1990, 1, "ул. Лермонтова, 2", "+79876543210", "222222", "202", 10);
+    Outpatient* p3 = new Outpatient("Сидор", "Сидоров", "Сидорович", 1985, 0, "ул. Толстого, 3", "+70000000000", "333333", "2024-04-10");
 
-    Outpatient op("Петр", "Петров", "Петрович", 1990, 1, "ул. Мира, 2", "+79009876543", "9876543210", "2024-03-15");
-    op.addPatientFile();
-    op.printPatientInfo();
+    // Вызов через базовый класс (виртуальный вызов)
+    p1->printPatientSummary();
+    p2->printPatientSummary();
+    p3->printPatientSummary();
 
-    return 0;
+    Patient* p4 = p2; // указатель базового класса на объект производного класса
+    p4->printPatientSummary(); // Виртуальный вызов - работает полиморфизм
+
+    delete p1;
+    delete p2;
+    delete p3;
+
+    //Пример с абстрактным классом
+    PatientRecord record(*p2);
+    record.addDiagnosis("Пневмония");
+    record.printRecord();
+
+    // Если бы printPatientSummary() НЕ была виртуальной:
+    // p4->printPatientSummary(); // Выведет только информацию из базового класса
 
     return 0;
 }
