@@ -5,35 +5,49 @@ using namespace std;
 class Patient 
 {
 public:
-    Patient();
+    Patient() : year_birth(1900), gender(0), patientID(generatePatientID()) {} //Добавлен patientID
+
     Patient(const std::string& name, const std::string& surname, const std::string& patronymic, int year_birth,
-        int gender, const std::string& address, const std::string& phone, const std::string& insurance);
-    Patient(const Patient& other);
-    Patient& operator=(const Patient& other);
+        int gender, const std::string& address, const std::string& phone, const std::string& insurance)
+        : name(name), surname(surname), patronymic(patronymic), year_birth(year_birth), gender(gender),
+        address(address), phone(phone), insurance(insurance), patientID(generatePatientID()) {}
+
+    Patient(const Patient& other) : name(other.name), surname(other.surname), patronymic(other.patronymic),
+        year_birth(other.year_birth), gender(other.gender), address(other.address),
+        phone(other.phone), insurance(other.insurance), patientID(generatePatientID()) {}
+
+
+    Patient& operator=(const Patient& other) = default;
+
     ~Patient() = default;
 
-    int addPatientFile();
-    int deletePatientFile(const std::string& insuranceFind);
-    void printPatientAllFile();
-    void printPatientInfo() const;
+    virtual int addPatientFile() const;
+    int deletePatientFile(const string& insuranceFind) const;
+    void printPatientAllFile() const;
+    virtual void printPatientInfo() const;
     int setPatient();
-    int* getYearBirthPtr();
-    int& getYearBirthRef();
+    int* getYearBirthPtr() { return &year_birth; }
+    int& getYearBirthRef() { return year_birth; }
     bool operator==(const Patient& other) const;
-    friend std::ostream& operator<<(std::ostream& os, const Patient& patient);
+    friend ostream& operator<<(ostream& os, const Patient& patient);
 
-    static int getPatientCount(); // Статический метод
+    static int getPatientCount();
     static void resetPatientCount();
 
+    // Защищенный доступ к ID пациента
+protected:
+    long long patientID;
+    static long long generatePatientID();
+
 private:
-    std::string name;
-    std::string surname;
-    std::string patronymic;
+    string name;
+    string surname;
+    string patronymic;
     int year_birth;
     int gender;
-    std::string address;
-    std::string phone;
-    std::string insurance;
+    string address;
+    string phone;
+    string insurance;
     static int patientCount; // Статическое поле
 };
 

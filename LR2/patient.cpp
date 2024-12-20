@@ -10,7 +10,7 @@ using namespace std;
 
 int Patient::patientCount = 0;
 
-Patient::Patient() : year_birth(0), gender(0) { patientCount++; }
+Patient::Patient() : year_birth(0), gender(0), patientID(generatePatientID()) { patientCount++; }
 
 Patient::Patient(const string& name, const string& surname, const string& patronymic, int year_birth,
 	int gender, const string& address, const string& phone, const string& insurance)
@@ -19,6 +19,7 @@ Patient::Patient(const string& name, const string& surname, const string& patron
 	patientCount++;
 }
 
+//Конструктор копирования
 Patient::Patient(const Patient& other) :
 	name(other.name), surname(other.surname), patronymic(other.patronymic), year_birth(other.year_birth),
 	gender(other.gender), address(other.address), phone(other.phone), insurance(other.insurance) {
@@ -39,12 +40,12 @@ Patient& Patient::operator=(const Patient& other) {
 	return *this;
 }
 
-int Patient::addPatientFile() {
+int Patient::addPatientFile() const {
 	setlocale(LC_ALL, "ru");
 	try {
 		ofstream outfile("db.txt", ios::app);
 		if (!outfile.is_open()) {
-			throw runtime_error("Ошибка открытия файла!"); // Исключение
+			throw runtime_error("Ошибка открытия файла!");
 		}
 		outfile << *this << endl;
 		outfile.close();
@@ -57,7 +58,7 @@ int Patient::addPatientFile() {
 	}
 }
 
-int Patient::deletePatientFile(const string& insuranceFind) {
+int Patient::deletePatientFile(const string& insuranceFind) const {
 	setlocale(LC_ALL, "ru");
 	ifstream infile("db.txt");
 	ofstream outfile("db1.txt");
@@ -97,7 +98,7 @@ int Patient::deletePatientFile(const string& insuranceFind) {
 	return 0;
 }
 
-void Patient::printPatientAllFile() {
+void Patient::printPatientAllFile() const {
 	setlocale(LC_ALL, "ru");
 	ifstream infile("db.txt");
 	if (!infile.is_open()) {
@@ -200,8 +201,14 @@ bool Patient::operator==(const Patient& other) const {
 }
 
 ostream& operator<<(ostream& os, const Patient& patient) {
-	os << patient.name << " " << patient.surname << " " << patient.patronymic << " "
-		<< patient.year_birth << " " << patient.gender << " " << patient.address << " "
-		<< patient.phone << " " << patient.insurance;
+	os << patient.name << ";" << patient.surname << ";" << patient.patronymic << ";" << 
+		patient.year_birth << ";" << patient.gender << ";" << patient.address << ";" << 
+		patient.phone << ";" << patient.insurance << ";" << patient.patientID;
 	return os;
+}
+
+long long Patient::generatePatientID() {
+	//Генерация уникального ID
+	std::time_t timer;
+	return time(&timer);
 }
