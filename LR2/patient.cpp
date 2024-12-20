@@ -188,10 +188,6 @@ int& Patient::getYearBirthRef() {
 	return year_birth;
 }
 
-int Patient::getPatientCount() {
-	return patientCount;
-}
-
 void Patient::resetPatientCount() {
 	patientCount = 0;
 }
