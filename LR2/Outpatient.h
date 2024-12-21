@@ -34,7 +34,15 @@ public:
 
     void printPatientSummary() const {
         Patient::printPatientSummary();
-        std::cout << "Статус: Амбулаторный, Следующий прием: " << nextAppointment << std::endl;
+        cout << "Статус: Амбулаторный, Следующий прием: " << nextAppointment << endl;
+    }
+
+    Outpatient& operator=(const Outpatient& other) {
+        if (this != &other) {
+            Patient::operator=(other);
+            nextAppointment = other.nextAppointment;
+        }
+        return *this;
     }
 
 private:

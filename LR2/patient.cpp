@@ -4,27 +4,31 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <chrono>
+#include <sstream>
+#include <random>
+#include <iomanip>
 #include "patient.h"
 
 using namespace std;
 
 int Patient::patientCount = 0;
 
-Patient::Patient() : year_birth(0), gender(0), patientID(generatePatientID()) { patientCount++; }
+Patient::Patient() : name(""), surname(""), patronymic(""), year_birth(0), gender(0),
+	address(""), phone(""), insurance(""), patientID(generatePatientID()) {
+	patientCount++;
+}
 
 Patient::Patient(const string& name, const string& surname, const string& patronymic, int year_birth,
 	int gender, const string& address, const string& phone, const string& insurance)
 	: name(name), surname(surname), patronymic(patronymic), year_birth(year_birth), gender(gender),
-	address(address), phone(phone), insurance(insurance) {
-	patientCount++;
-}
+	address(address), phone(phone), insurance(insurance), patientID(generatePatientID()) {}
 
 //Конструктор копирования
 Patient::Patient(const Patient& other) :
-	name(other.name), surname(other.surname), patronymic(other.patronymic), year_birth(other.year_birth),
-	gender(other.gender), address(other.address), phone(other.phone), insurance(other.insurance) {
-	patientCount++;
-}
+	name(other.name), surname(other.surname), patronymic(other.patronymic),
+	year_birth(other.year_birth), gender(other.gender), address(other.address),
+	phone(other.phone), insurance(other.insurance), patientID(other.patientID) {}
 
 Patient& Patient::operator=(const Patient& other) {
 	if (this != &other) {
@@ -36,6 +40,7 @@ Patient& Patient::operator=(const Patient& other) {
 		address = other.address;
 		phone = other.phone;
 		insurance = other.insurance;
+		patientID = other.patientID;
 	}
 	return *this;
 }
@@ -47,6 +52,12 @@ int Patient::addPatientFile() const {
 		if (!outfile.is_open()) {
 			throw runtime_error("Ошибка открытия файла!");
 		}
+
+		// Проверка на валидность данных (пример)
+		if (name.empty() || surname.empty() || insurance.empty()) {
+			throw runtime_error("Не все поля пациента заполнены!");
+		}
+
 		outfile << *this << endl;
 		outfile.close();
 		cout << "Пациент добавлен!" << endl;
@@ -197,14 +208,18 @@ bool Patient::operator==(const Patient& other) const {
 }
 
 ostream& operator<<(ostream& os, const Patient& patient) {
-	os << patient.name << ";" << patient.surname << ";" << patient.patronymic << ";" << 
-		patient.year_birth << ";" << patient.gender << ";" << patient.address << ";" << 
+	os << patient.name << ";" << patient.surname << ";" << patient.patronymic << ";" <<
+		patient.year_birth << ";" << patient.gender << ";" << patient.address << ";" <<
 		patient.phone << ";" << patient.insurance << ";" << patient.patientID;
 	return os;
 }
 
-long long Patient::generatePatientID() {
+int Patient::generatePatientID() {
 	//Генерация уникального ID
-	std::time_t timer;
-	return time(&timer);
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> distrib(0, 99999); // Диапазон случайных чисел
+	int randomNumber = distrib(gen);
+
+	return randomNumber;
 }

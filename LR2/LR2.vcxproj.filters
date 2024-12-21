@@ -29,5 +29,14 @@
     <ClInclude Include="patient.h">
       <Filter>Исходные файлы\src</Filter>
     </ClInclude>
+    <ClInclude Include="HospitalizedPatient.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Outpatient.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MedicalRecord.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

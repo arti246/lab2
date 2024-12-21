@@ -131,6 +131,9 @@
     <ClCompile Include="patient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HospitalizedPatient.h" />
+    <ClInclude Include="MedicalRecord.h" />
+    <ClInclude Include="Outpatient.h" />
     <ClInclude Include="patient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

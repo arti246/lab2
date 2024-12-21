@@ -5,35 +5,28 @@ using namespace std;
 class Patient 
 {
 public:
-    Patient() : year_birth(1900), gender(0), patientID(generatePatientID()) {} //Добавлен patientID
+    Patient(); //Добавлен patientID
 
-    Patient(const std::string& name, const std::string& surname, const std::string& patronymic, int year_birth,
-        int gender, const std::string& address, const std::string& phone, const std::string& insurance)
-        : name(name), surname(surname), patronymic(patronymic), year_birth(year_birth), gender(gender),
-        address(address), phone(phone), insurance(insurance), patientID(generatePatientID()) {}
+    Patient(const string& name, const string& surname, const string& patronymic, int year_birth,
+        int gender, const string& address, const string& phone, const string& insurance);
 
-    Patient(const Patient& other) : name(other.name), surname(other.surname), patronymic(other.patronymic),
-        year_birth(other.year_birth), gender(other.gender), address(other.address),
-        phone(other.phone), insurance(other.insurance), patientID(generatePatientID()) {}
+    Patient(const Patient& other);
 
+    Patient& operator=(const Patient& other);
 
-    Patient& operator=(const Patient& other) = default;
-
-    ~Patient() = default;
+    virtual ~Patient() = default;
 
     virtual void printPatientSummary() const { // Виртуальная функция
         cout << "Имя: " << name << ", Фамилия: " << surname << ", Страховой полис: " << insurance << endl;
     }
-
-    virtual ~Patient() = default; // Виртуальный деструктор - очень важно!
 
     virtual int addPatientFile() const;
     int deletePatientFile(const string& insuranceFind) const;
     void printPatientAllFile() const;
     virtual void printPatientInfo() const;
     int setPatient();
-    int* getYearBirthPtr() { return &year_birth; }
-    int& getYearBirthRef() { return year_birth; }
+    int* getYearBirthPtr();
+    int& getYearBirthRef();
     bool operator==(const Patient& other) const;
     friend ostream& operator<<(ostream& os, const Patient& patient);
 
@@ -49,6 +42,7 @@ public:
     string getPhone() const { return phone; }
     string getInsurance() const { return insurance; }
     int getPatientCount() { return patientCount; }
+    int getPatientID() { return patientID; }
 
     //Сеттеры
     void setName(string name) { this->name = name; }
@@ -63,8 +57,8 @@ public:
 
     // Защищенный доступ к ID пациента
 protected:
-    long long patientID;
-    static long long generatePatientID();
+    int patientID;
+    static int generatePatientID();
 
 private:
     string name;

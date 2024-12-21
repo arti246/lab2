@@ -11,7 +11,7 @@ using namespace std;
 /*Абстрактный класс*/
 class MedicalRecord {
 public:
-    virtual void addDiagnosis(const string& diagnosis) = 0; // Чисто виртуальная функция
+    virtual void addDiagnosis(const string& diagnosis) = 0;
     virtual void printRecord() const = 0;
     virtual ~MedicalRecord() = default;
 };
@@ -20,7 +20,7 @@ class PatientRecord : public MedicalRecord {
 public:
     PatientRecord(const Patient& p) : patient(p) {}
 
-    void addDiagnosis(const std::string& diagnosis) override {
+    void addDiagnosis(const string& diagnosis) override {
         diagnoses.push_back(diagnosis);
     }
 
